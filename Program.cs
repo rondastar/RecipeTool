@@ -15,11 +15,11 @@ namespace RecipeTool
 
         public static void TestSingleLineSplitRecipe()
         {
-            LinkedListSingly<char[]> recipeElements =
+            LinkedListDoubly<char[]> recipeElements =
                 Splitter.SplitRecipe("1 2/3 C tomatoes");
 
             Console.WriteLine(recipeElements.Count);
-            recipeElements.Display();
+            recipeElements.DisplayForward();
         }
 
         //public static void TestMultiLineSplitRecipe()

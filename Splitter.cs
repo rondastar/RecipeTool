@@ -84,10 +84,10 @@ namespace RecipeTool
         //}
 
          //========== THE BELOW METHOD WORKS TO SPLIT A SINGLE LINE, RETURNS TYPE CHAR[] ---- except last element cuts off final char ==========================
-        internal static LinkedListSingly<char[]> SplitRecipe(string s)
+        internal static LinkedListDoubly<char[]> SplitRecipe(string s)
         {
             // recipe elements is made up of recipe lines, which are made up of strings split by spaces
-            LinkedListSingly<char[]> recipeElements = new LinkedListSingly<char[]>();
+            LinkedListDoubly<char[]> recipeElements = new LinkedListDoubly<char[]>();
 
 
             // keep track of the start of the current element being split
