@@ -16,7 +16,7 @@ namespace RecipeTool
         public static void TestSingleLineSplitRecipe()
         {
             LinkedListDoubly<char[]> recipeElements =
-                Splitter.SplitRecipe("1 2/3 C tomatoes");
+                Splitter.SplitRecipe("16 2/3 C tomatoes");
 
             Console.WriteLine(recipeElements.Count);
             recipeElements.DisplayForward();

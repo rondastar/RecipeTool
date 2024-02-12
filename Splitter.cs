@@ -46,44 +46,7 @@ namespace RecipeTool
         //    return parts;
         //}
 
-        //internal static LinkedListSingly<LinkedListSingly<string>> SplitRecipe(string s)
-        //{
-        //    // recipe elements is meade up of recipe lines, which are made up of strings split by spaces
-        //    LinkedListSingly<LinkedListSingly<string>> recipeElements = new LinkedListSingly<LinkedListSingly<string>>();
-
-
-        //    // keep track of the start of the current element being split
-        //    int indexElementStart = 0;
-
-        //    for (int i = 0; i < s.Length; i++)
-        //    {
-        //        LinkedListSingly<string> recipeLine = new LinkedListSingly<string>();
-
-        //        // if the current index is a line break
-        //        if (s[i] == '\n')
-        //        {
-        //            recipeElements.Add(recipeLine);
-        //        }
-        //        // if the current index is a space or if it is the end of the string
-        //        else if (s[i] == ' ' || i == s.Length - 1)
-        //        {
-        //            // create an array to hold the new element
-        //            char[] element = new char[i - indexElementStart];
-        //            for (int j = indexElementStart; j < i; j++)
-        //            {
-        //                element[j] = s[j];
-        //            }
-
-        //            recipeLine.Add(element.ToString());
-        //        }
-        //    }
-
-
-        //    return recipeElements;
-
-        //}
-
-         //========== THE BELOW METHOD WORKS TO SPLIT A SINGLE LINE, RETURNS TYPE CHAR[] ---- except last element cuts off final char ==========================
+         //========== THE BELOW METHOD WORKS TO SPLIT A SINGLE LINE, RETURNS TYPE CHAR[] ==========================
         internal static LinkedListDoubly<char[]> SplitRecipe(string s)
         {
             // recipe elements is made up of recipe lines, which are made up of strings split by spaces
