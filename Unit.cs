@@ -10,6 +10,9 @@ namespace RecipeTool
     {
         private string _name;
 
+
+        public Unit() { } // default constructor
+
         public Unit(string name)
         {
             _name = name;

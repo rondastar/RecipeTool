@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace RecipeTool
 {
@@ -294,7 +295,6 @@ namespace RecipeTool
                 Console.Write($"{current.Value} ");
                 current = current.Next;
             }
-            Console.WriteLine("null");
         } // DisplayForward
 
         // Display backward, from tail to head
@@ -306,7 +306,6 @@ namespace RecipeTool
                 Console.Write($"{current.Value} ");
                 current = current.Previous;
             }
-            Console.WriteLine("null");
         } // DisplayBackward
 
         // Remove a node by value
@@ -378,6 +377,8 @@ namespace RecipeTool
                 count--;
             }
         } // Clear
+
+        
 
         // checks whether index is within the range of the linked list
         public void ValidateRange(int index)

@@ -1,39 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Schema;
 
 namespace RecipeTool
 {
-    internal class IngredientLine
+    internal class IngredientLineSorter
     {
-        private Quantity _qty;
-        private Unit _unit;
-        private Ingredient _ingredient;
-
-        internal Quantity Qty { get => _qty; set => _qty = value; }
-        internal Unit Unit { get => _unit; set => _unit = value; }
-        internal Ingredient Ingredient { get => _ingredient; set => _ingredient = value; }
-
-        public IngredientLine()
-        {
-        } // default constructor
-        public IngredientLine(Quantity qty, Unit unit, Ingredient ingredient)
-        {
-            Qty = qty;
-            Unit = unit;
-            Ingredient = ingredient;
-        }
-
-        public IngredientLine(Quantity qty, Ingredient ingredient)
-        {
-            Qty = qty;
-            Ingredient = ingredient;
-        }
-
-        public IngredientLine(Ingredient ingredient) { Ingredient = ingredient; }
-
+        /// <summary>
+        /// Assumes the ingredient lines are in the format quantity unit ingredient.
+        /// </summary>
+        /// <param name="lineString"></param>
         internal static IngredientLine SortIngredientLine(LinkedListDoubly<string> lineString)
         {
             // these fields are used to store the parts of the ingredient line until they are used in their respective constructors
@@ -55,12 +35,12 @@ namespace RecipeTool
             string unit = "";
             string ingredient = "";
 
-            string[] unitNames = { "C", "cup", "T", "tablespoon", "tsp", "teaspoon", "grams" };
+            string[] unitNames = { "C", "cup", "T", "tablespoon", "tablespoons", "tsp", "teaspoon", "grams" };
 
-            while (lineString != null)
+            for (int index = 0; index <= lineString.Count; index++)
             {
                 // runs until the quantity is determined
-                do
+                while (isQuantityLoopComplete == false)
                 {
                     // checks if the first element is an integer
                     if (int.TryParse(lineString[0], out int j))
@@ -127,23 +107,27 @@ namespace RecipeTool
                         {
                             unit = unitNames[i];
                             isKnownUnit = true;
+
+                            // remove head if there is a matching unit
+                            lineString.RemoveAtFront();
+                            break;
                         }
                     }
-
-                } while (!isQuantityLoopComplete);
-
-                //ingredient += lineString[0];
+                } 
+                // Add remaining elements to the ingredient
+                ingredient += lineString.RemoveAtFront() + " ";
             }
-
             IngredientLine sortedIngredientLine;
             Ingredient recipeIngredient = new Ingredient(ingredient);
 
             if(isKnownQuantity)
             {
+                // initialize quantity if applicable
                 Quantity quantity;
 
                 if (isKnownUnit) // has unit
                 {
+                    // initialize unit if applicable
                     Unit recipeUnit = new Unit(unit);
                     if (isWholeNumber)
                     {
@@ -187,14 +171,14 @@ namespace RecipeTool
 
                     // ingredient line with quantity and ingredient only
                     sortedIngredientLine = new IngredientLine(quantity, recipeIngredient);
+
                     return sortedIngredientLine;
-
                 }
-
             } // if(isKnownQuantity)
 
+            // if the ingredient has no known unit or quantity, it is just an ingredient
             sortedIngredientLine = new IngredientLine(recipeIngredient);
             return sortedIngredientLine;
         } // SortIngredientLine
-    }
-}
+    } // class
+} // namespace

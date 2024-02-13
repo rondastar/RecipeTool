@@ -9,48 +9,15 @@ namespace RecipeTool
 {
     public static class Splitter
     {
-        //// This splitter is from StackOverflow
-        //// [https://stackoverflow.com/questions/4680128/split-a-string-with-delimiters-but-keep-the-delimiters-in-the-result-in-c-sharp#comment7390300_521172]
-        ///// <summary>
-        ///// Splits the given string into a list of substrings, while outputting the splitting
-        ///// delimiters (each in its own string) as well. It's just like String.Split() except
-        ///// the delimiters are preserved. No empty strings are output.</summary>
-        ///// <param name="s">String to parse. Can be null or empty.</param>
-        ///// <param name="delimiters">The delimiting characters. Can be an empty array.</param>
-        ///// <returns></returns>
-        //public static IList<string> SplitAndKeepDelimiters(this string s, params char[] delimiters)
-        //{
-        //    var parts = new List<string>();
-        //    if (!string.IsNullOrEmpty(s))
-        //    {
-        //        int iFirst = 0;
-        //        do
-        //        {
-        //            int iLast = s.IndexOfAny(delimiters, iFirst);
-        //            if (iLast >= 0)
-        //            {
-        //                if (iLast > iFirst)
-        //                    parts.Add(s.Substring(iFirst, iLast - iFirst)); //part before the delimiter
-        //                parts.Add(new string(s[iLast], 1));//the delimiter
-        //                iFirst = iLast + 1;
-        //                continue;
-        //            }
-
-        //            //No delimiters were found, but at least one character remains. Add the rest and stop.
-        //            parts.Add(s.Substring(iFirst, s.Length - iFirst));
-        //            break;
-
-        //        } while (iFirst < s.Length);
-        //    }
-
-        //    return parts;
-        //}
-
-         //========== THE BELOW METHOD WORKS TO SPLIT A SINGLE LINE, RETURNS TYPE CHAR[] ==========================
-        internal static LinkedListDoubly<char[]> SplitRecipe(string s)
+        /// <summary>
+        /// splits a line from a recipe into separate elements
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        internal static LinkedListDoubly<string> SplitRecipeLine(string s)
         {
             // recipe elements is made up of recipe lines, which are made up of strings split by spaces
-            LinkedListDoubly<char[]> recipeElements = new LinkedListDoubly<char[]>();
+            LinkedListDoubly<string> recipeElements = new LinkedListDoubly<string>();
 
 
             // keep track of the start of the current element being split
@@ -79,14 +46,15 @@ namespace RecipeTool
                     }
 
                     Console.WriteLine(element);
-                    recipeElements.Add(element);
+                    string stringElement = new string(element);
+                    recipeElements.Add(stringElement);
 
                     // if the current index is a slash, add it as a separate element
                     // this is separated to make is easier to identify and process fractions
                     if (s[i]=='/')
                     {
                         // create an array to hold the slash
-                        char[] slash = { s[i] };
+                        string slash = "/";
 
                         Console.WriteLine(slash);
                         recipeElements.Add(slash);
@@ -110,7 +78,8 @@ namespace RecipeTool
                     }
 
                     Console.WriteLine(element);
-                    recipeElements.Add(element);
+                    string stringElement = new string(element);
+                    recipeElements.Add(stringElement);
                 }
 
             }
