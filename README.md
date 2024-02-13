@@ -1,6 +1,6 @@
 # RecipeTool
 
-This recipe converter is the version 2.0 of my first personal project, which I started halfway through first quarter of learning computer science at RTC. I chose this project because I enjoy baking recipes from places I have lived abroad, and I used to go through recipes and research how to convert quantities of different types of ingredients from metric to US and vice versa.
+This recipe converter is an ongoing personal project, which I started halfway through first quarter of learning computer science at RTC. I chose this project because I enjoy baking recipes from places I have lived abroad, and I used to go through recipes and research how to convert quantities of different types of ingredients from metric to US and vice versa.
 
 ## How It Works
 Recipe calculations
