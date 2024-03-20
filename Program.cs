@@ -30,8 +30,8 @@ namespace RecipeTool
             LinkedListDoubly<string> recipeElements2 =
                 Splitter.SplitRecipeLine("a pinch of salt");
 
-            Console.WriteLine(recipeElements2.Count); // 7
-            recipeElements2.DisplayForward(); // 16 2 / 3 C crushed tomatoes
+            Console.WriteLine(recipeElements2.Count); // 4
+            recipeElements2.DisplayForward(); // a pinch of salt
             Console.WriteLine();
 
 
@@ -45,8 +45,6 @@ namespace RecipeTool
 
 
             // Test IngredientLineSorter.SortIngredientLine --- displays recipe IngredientLine as Quantity, Unit, and Ingredient
-            // Quantity does not display correctly yet <<================================================================================ WORK ON THIS!
-            // DOES NOT WORK FOR ALL TESTS!!! =========================================================================================================
 
             // ----- Test 1
             TestIngredientLineSorter(recipeElements);
@@ -67,11 +65,31 @@ namespace RecipeTool
 
         public static IngredientLine TestIngredientLineSorter(LinkedListDoubly<string> ingredientLine)
         {
+            // Displays all elements in the ingredient line
             IngredientLine sortedIngredientLine = new IngredientLine();
             sortedIngredientLine = IngredientLineSorter.SortIngredientLine(ingredientLine);
 
-            Console.WriteLine($"Quantity: {sortedIngredientLine.Qty.ToString}");
-            Console.WriteLine($"Unit: {sortedIngredientLine.Unit.Name}");
+            // Display quantity, using string literal unless null
+            if(sortedIngredientLine.Qty == null)
+            {
+                Console.WriteLine($"Quantity: null");
+            }
+            else
+            {
+                Console.WriteLine($"Quantity: {sortedIngredientLine.Qty}");
+            }
+
+            // Display unit, using string literal unless null
+            if (sortedIngredientLine.Unit == null)
+            {
+                Console.WriteLine($"Unit: null");
+            }
+            else
+            {
+                Console.WriteLine($"Unit: {sortedIngredientLine.Unit.Name}");
+            }
+
+            // Display ingredient using string literal
             Console.WriteLine($"Ingredient: {sortedIngredientLine.Ingredient.Name}");
 
             return sortedIngredientLine;

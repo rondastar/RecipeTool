@@ -35,9 +35,10 @@ namespace RecipeTool
             string unit = "";
             string ingredient = "";
 
-            string[] unitNames = { "C", "cup", "T", "tablespoon", "tablespoons", "tsp", "teaspoon", "grams" };
+            string[] unitNames = { "C", "cup", "T", "tablespoon", "tablespoons", "teaspoon", "tsp", "grams" };
 
-            for (int index = 0; index <= lineString.Count; index++)
+            // runs as long as there are unsorted elements remaining in the ingredient line
+            while (lineString.Count != 0)
             {
                 // runs until the quantity is determined
                 while (isQuantityLoopComplete == false)

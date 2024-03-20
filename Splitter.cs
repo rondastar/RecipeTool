@@ -9,6 +9,7 @@ namespace RecipeTool
 {
     public static class Splitter
     {
+
         /// <summary>
         /// splits a line from a recipe into separate elements
         /// </summary>
@@ -16,7 +17,7 @@ namespace RecipeTool
         /// <returns></returns>
         internal static LinkedListDoubly<string> SplitRecipeLine(string s)
         {
-            // recipe elements is made up of recipe lines, which are made up of strings split by spaces
+            // recipe elements make up recipe lines and are delimited by spaces (and "/" in the case of fractions)
             LinkedListDoubly<string> recipeElements = new LinkedListDoubly<string>();
 
 
@@ -25,14 +26,6 @@ namespace RecipeTool
 
             for (int i = 0; i < s.Length; i++)
             {
-                //LinkedListSingly<string> recipeLine = new LinkedListSingly<string>();
-
-                //// if the current index is a line break
-                //if (s[i] == '\n')
-                //{
-                //    recipeElements.Add(recipeLine);
-                //}
-
                 // if the current index is a space or slash
                 if (s[i] == ' ' || s[i]=='/')
                 {
@@ -45,7 +38,7 @@ namespace RecipeTool
                         element[j - indexElementStart] = s[j];
                     }
 
-                    Console.WriteLine(element);
+                    //Console.WriteLine(element); // for testing
                     string stringElement = new string(element);
                     recipeElements.Add(stringElement);
 
@@ -56,7 +49,7 @@ namespace RecipeTool
                         // create an array to hold the slash
                         string slash = "/";
 
-                        Console.WriteLine(slash);
+                        //Console.WriteLine(slash); // for testing
                         recipeElements.Add(slash);
                     }
 
@@ -77,7 +70,7 @@ namespace RecipeTool
                         element[j - indexElementStart] = s[j];
                     }
 
-                    Console.WriteLine(element);
+                    //Console.WriteLine(element); // for testing
                     string stringElement = new string(element);
                     recipeElements.Add(stringElement);
                 }
